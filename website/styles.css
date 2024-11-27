@@ -1,0 +1,125 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 0;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+nav .logo a {
+    color: rgb(231, 27, 27);
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+nav .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Banner Section */
+.banner {
+    background: url('./images/download\ \(2\).jpeg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 5rem 1rem;
+    background-size: 100% 700px;
+    height: 87vh;
+}
+.banner h1 {
+    font-size: 2.5rem;
+}
+.banner p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Media Section */
+.media-section {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+.media-content img,
+.media-content video {
+    width: 70%;
+    margin: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    height: 80vh;
+    width: 50vh;
+}
+
+/* Content Section */
+.content-section {
+    padding: 2rem;
+    text-align: center;
+}
+.content-section .extras img {
+    width: 20%;
+    margin: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+.content-section .pdf-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 2rem 4rem;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.content-section .pdf-link:hover {
+    background-color: #b3001e;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 1rem 0;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+#word-section {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+}
+#word-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+#word-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+#word-section ul li {
+    font-size: 1.2em;
+    padding: 5px 0;
+}

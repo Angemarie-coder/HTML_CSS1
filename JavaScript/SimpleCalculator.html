@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    /* Calculator Container */
+    .calculator {
+      width: 300px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    /* Display Screen */
+    .calculator-screen {
+      width: 100%;
+      height: 50px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      text-align: right;
+      padding: 5px 10px;
+      box-sizing: border-box;
+    }
+
+    /* Buttons Grid */
+    .calculator-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    /* Buttons Styles */
+    .button {
+      height: 50px;
+      background: #4CAF50;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background: #45a049;
+    }
+
+    /* Special Buttons */
+    .button.operator {
+      background: #f39c12;
+    }
+
+    .button.operator:hover {
+      background: #e67e22;
+    }
+
+    .button.clear {
+      background: #e74c3c;
+    }
+
+    .button.clear:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <!-- Display Screen -->
+    <input type="text" class="calculator-screen" id="screen" disabled />
+
+    <!-- Calculator Buttons -->
+    <div class="calculator-buttons">
+      <button class="button" onclick="appendNumber('7')">7</button>
+      <button class="button" onclick="appendNumber('8')">8</button>
+      <button class="button" onclick="appendNumber('9')">9</button>
+      <button class="button operator" onclick="setOperator('/')">÷</button>
+
+      <button class="button" onclick="appendNumber('4')">4</button>
+      <button class="button" onclick="appendNumber('5')">5</button>
+      <button class="button" onclick="appendNumber('6')">6</button>
+      <button class="button operator" onclick="setOperator('*')">×</button>
+
+      <button class="button" onclick="appendNumber('1')">1</button>
+      <button class="button" onclick="appendNumber('2')">2</button>
+      <button class="button" onclick="appendNumber('3')">3</button>
+      <button class="button operator" onclick="setOperator('-')">−</button>
+
+      <button class="button clear" onclick="clearScreen()">C</button>
+      <button class="button" onclick="appendNumber('0')">0</button>
+      <button class="button" onclick="calculate()">=</button>
+      <button class="button operator" onclick="setOperator('+')">+</button>
+    </div>
+  </div>
+
+  <script>
+    // Variables to store the current input, operator, and previous value
+    let currentInput = '';
+    let previousInput = '';
+    let operator = null;
+
+    // Function to append a number to the screen
+    function appendNumber(number) {
+      currentInput += number;
+      updateScreen();
+    }
+
+    // Function to update the display screen
+    function updateScreen() {
+      const screen = document.getElementById('screen');
+      screen.value = currentInput;
+    }
+
+    // Function to set the operator and store the current input as the previous value
+    function setOperator(op) {
+      if (currentInput === '') return; // Do nothing if there's no number entered
+      if (previousInput !== '') calculate(); // Calculate if there's already a previous value
+      operator = op; // Set the operator
+      previousInput = currentInput; // Store the current input as the previous value
+      currentInput = ''; // Clear the current input for the next number
+    }
+
+    // Function to perform the calculation
+    function calculate() {
+      if (operator === null || currentInput === '') return; // Do nothing if no operator or number
+      const prev = parseFloat(previousInput);
+      const curr = parseFloat(currentInput);
+
+      let result;
+      switch (operator) {
+        case '+':
+          result = prev + curr;
+          break;
+        case '-':
+          result = prev - curr;
+          break;
+        case '*':
+          result = prev * curr;
+          break;
+        case '/':
+          result = prev / curr;
+          break;
+        default:
+          return;
+      }
+
+      currentInput = result.toString(); // Convert result back to a string
+      operator = null; // Reset operator
+      previousInput = ''; // Reset previous input
+      updateScreen(); // Update the display
+    }
+
+    // Function to clear the screen and reset variables
+    function clearScreen() {
+      currentInput = '';
+      previousInput = '';
+      operator = null;
+      updateScreen();
+    }
+  </script>
+
+</body>
+</html>

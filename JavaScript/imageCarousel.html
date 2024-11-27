@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Carousel</title>
+  <style>
+    /* Carousel Container */
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 50px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Carousel Images */
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Navigation Arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+    }
+
+    .carousel-arrow.left {
+      left: 10px;
+    }
+
+    .carousel-arrow.right {
+      right: 10px;
+    }
+
+    /* Dots for Navigation */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      margin: 0 5px;
+      background-color: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .carousel-dot.active {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel">
+    <!-- Image Wrapper -->
+    <div class="carousel-images">
+      <img src="./images/Ange_passport.jpg" alt="Image 1">
+      <img src="./images/download (1).jpeg" alt="Image 2">
+      <img src="./images/download (2).jpeg" alt="Image 3">
+      <img src="./images/download (3).jpeg" alt="Image 4">
+      <img src="./images/Ange_passport.jpg" alt="Image 1">
+      <img src="./images/download (4).jpeg" alt="Image 2">
+      <img src="./images/download (5).jpeg" alt="Image 3">
+      <img src="./images/download (6).jpeg" alt="Image 4">
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-arrow left" onclick="prevSlide()">&#10094;</button>
+    <button class="carousel-arrow right" onclick="nextSlide()">&#10095;</button>
+  </div>
+
+  <!-- Dots for Navigation -->
+  <div class="carousel-dots"></div>
+
+  <script>
+    // Variables
+    const images = document.querySelector('.carousel-images');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    const totalImages = images.children.length;
+    let currentIndex = 0;
+
+    // Generate Dots
+    for (let i = 0; i < totalImages; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      if (i === 0) dot.classList.add('active');
+      dot.setAttribute('data-index', i);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    // Update Carousel for Current Slide
+    function updateCarousel() {
+      // Move the carousel to the correct slide
+      images.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      // Update dots
+      document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    // Go to Next Slide
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalImages;
+      updateCarousel();
+    }
+
+    // Go to Previous Slide
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+      updateCarousel();
+    }
+
+    // Go to Specific Slide
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    // Auto Slide (Optional)
+    setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  </script>
+</body>
+</html>

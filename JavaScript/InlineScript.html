@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Your Name</title>
+</head>
+<body>
+    <section id="contact"></section>
+    <h1>Hello, World!</h1>
+    <p>Please enter your name below:</p>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="sayHello()">Submit</button>
+    <p id="greeting"></p> <!-- This will display the personalized greeting -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #greeting {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+
+    <script>
+        function sayHello() {
+            // Get the value from the input field
+            let name = document.getElementById('nameInput').value;
+
+            if (name) {
+                // Display a personalized greeting
+                document.getElementById('greeting').textContent = `Hello, ${name}! Welcome to our site.`;
+            } else {
+                // Display a default message if no name is entered
+                document.getElementById('greeting').textContent = "Hello, Guest! Please enter your name.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changing Buttons</title>
+    <style>
+        /* Basic styling for buttons */
+        .color-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Changing Buttons</h1>
+    <!-- Buttons -->
+    <button class="color-button" onclick="changeColor(this)">Button 1</button>
+    <button class="color-button" onclick="changeColor(this)">Button 2</button>
+    <button class="color-button" onclick="changeColor(this)">Button 3</button>
+
+    <script>
+        // Function to generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Function to change the button's background and text color
+        function changeColor(button) {
+            const newColor = getRandomColor();
+            button.style.backgroundColor = newColor;
+            button.style.color = '#FFFFFF'; // Ensure text is readable
+        }
+    </script>
+</body>
+</html>
